@@ -23,6 +23,9 @@ através da comida</Text>
         <Icon name="plus" size={16} color="#fff" style={styles.icon} />
         <Text style={styles.buttonText}>Nova entrada no diário alimentar</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Diário Alimentar')}>
+        <Text style={styles.buttonText}>Acessar diário alimentar</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Acessar plano nutricional</Text>
       </TouchableOpacity>
