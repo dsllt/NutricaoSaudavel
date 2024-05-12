@@ -7,9 +7,13 @@ import {
   TextInput,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
 export default function CreateMeal() {
+  const navigation = useNavigation();
+
   const [date, setDate] = useState(new Date());
 
   const onChange = (event, selectedDate) => {
@@ -19,6 +23,9 @@ export default function CreateMeal() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="left" size={20} color="#000" />
+      </TouchableOpacity>
       <Text style={styles.title}>Nova Refeição</Text>
 
       <View style={styles.inputContainer}>
@@ -85,13 +92,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    paddingTop: 120,
+    paddingTop: 80,
     padding: 28,
   },
   title: {
     fontSize: 30,
     fontFamily: 'Poppins_700Bold',
     marginBottom: 40,
+    marginTop: 40,
   },
   inputContainer: {
     display: 'flex',

@@ -1,7 +1,9 @@
+import { useNavigation } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 
 export default function Home(){
+  const navigation = useNavigation();
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Olá, Maria</Text>
@@ -17,7 +19,7 @@ através da comida</Text>
           <Text style={styles.tipButtonText}>Acessar</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Nova Refeição')}>
         <Icon name="plus" size={16} color="#fff" style={styles.icon} />
         <Text style={styles.buttonText}>Nova entrada no diário alimentar</Text>
       </TouchableOpacity>

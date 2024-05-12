@@ -1,4 +1,4 @@
-import { Explore, Home, Login, Profile } from "../pages";
+import { CreateMeal, Explore, Home, Login, Profile } from "../pages";
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -74,6 +74,7 @@ export default function Routes() {
       ) : ( */}
         <>
           <Stack.Screen name="Home" component={HomeNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Nova Refeição" component={CreateMeal} options={{ headerShown: false }} />
         </>
       {/* )} */}
     </Stack.Navigator>
