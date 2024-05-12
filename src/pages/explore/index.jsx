@@ -7,9 +7,9 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ExplorarCard from '../../components/explorarCard';
+import ExploreCard from '../../components/exploreCard';
 
-const itensExplorar = [
+const exploreItems = [
   {
     item: 'Vegetais',
     quantity: 42,
@@ -42,7 +42,7 @@ const itensExplorar = [
   },
 ];
 
-export default function Explorar() {
+export default function Explore() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>
@@ -54,8 +54,8 @@ export default function Explorar() {
       </View>
 
       <View style={styles.cardContainer}>
-        {itensExplorar.map((item, index) => {
-          return <ExplorarCard key={index} item={item} />;
+        {exploreItems.map((item, index) => {
+          return <ExploreCard key={index} item={item} />;
         })}
       </View>
     </ScrollView>

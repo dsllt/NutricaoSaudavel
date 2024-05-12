@@ -1,7 +1,9 @@
 import Login from './login';
-import Explorar from './explorar';
+import Explore from './explore';
+import Home from './home';
 
 export {
   Login,
-  Explorar
+  Explore,
+  Home
 };
