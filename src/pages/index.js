@@ -5,6 +5,7 @@ import Profile from './profile';
 import CreateMeal from './createMeal';
 import FoodDiary from './foodDiary';
 import NutritionalPlan from './nutritionalPlan';
+import PersonalizedRecommendations from './personalizedRecommendations';
 
 export {
   Login,
@@ -13,5 +14,6 @@ export {
   Profile,
   CreateMeal,
   FoodDiary,
-  NutritionalPlan
+  NutritionalPlan,
+  PersonalizedRecommendations
 };
