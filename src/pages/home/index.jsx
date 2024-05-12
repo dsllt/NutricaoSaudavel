@@ -26,7 +26,7 @@ através da comida</Text>
       <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Diário Alimentar')}>
         <Text style={styles.buttonText}>Acessar diário alimentar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Plano Nutricional')}>
         <Text style={styles.buttonText}>Acessar plano nutricional</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>
