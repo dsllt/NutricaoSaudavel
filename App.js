@@ -1,8 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { CreateMeal, Explore, Home, Login, Profile } from './src/pages';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {  useFonts, Poppins_500Medium, Poppins_700Bold, Poppins_400Regular } from '@expo-google-fonts/poppins';
+import Routes from './src/routes';
+import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -19,11 +23,18 @@ export default function App() {
     // <Explore />
     // <Home />
     // <Profile />
-    <CreateMeal />
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
     // </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+    <SafeAreaProvider>
+      <NavigationContainer>
+            <StatusBar style="dark" />
+            <Routes />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  </GestureHandlerRootView>
   );
 }
 
