@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Explore, Home, Login } from './src/pages';
+import { CreateMeal, Explore, Home, Login, Profile } from './src/pages';
 
 import {  useFonts, Poppins_500Medium, Poppins_700Bold, Poppins_400Regular } from '@expo-google-fonts/poppins';
 
@@ -17,7 +17,9 @@ export default function App() {
   return (
     // <Login/>
     // <Explore />
-    <Home />
+    // <Home />
+    // <Profile />
+    <CreateMeal />
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
