@@ -19,23 +19,23 @@ através da comida</Text>
           <Text style={styles.tipButtonText}>Acessar</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Nova Refeição')}>
+      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('NovaRefeicao')}>
         <Icon name="plus" size={16} color="#fff" style={styles.icon} />
         <Text style={styles.buttonText}>Nova entrada no diário alimentar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Diário Alimentar')}>
+      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('DiarioAlimentar')}>
         <Text style={styles.buttonText}>Acessar diário alimentar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Plano Nutricional')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('PlanoNutricional')}>
         <Text style={styles.buttonText}>Acessar plano nutricional</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Recomendacoes')}>
         <Text style={styles.buttonText}>Recomendações personalizadas</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('FaleComProfissional')}>
         <Text style={styles.buttonText}>Fale com um profissional</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AgendarConsulta')}>
         <Text style={styles.buttonText}>Agendar uma consulta</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -44,13 +44,13 @@ através da comida</Text>
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fbf6f3',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: 120,
-    padding: 28,
+    paddingBottom: 30,
+    paddingHorizontal: 28,
   },
   title: {
     fontSize: 30,

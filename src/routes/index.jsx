@@ -1,4 +1,4 @@
-import { CreateMeal, Explore, FoodDiary, Home, Login, NutritionalPlan, PersonalizedRecommendations, Profile } from "../pages";
+import { CreateMeal, Explore, FoodDiary, Home, Login, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -74,10 +74,12 @@ export default function Routes() {
       ) : ( */}
         <>
           <Stack.Screen name="Home" component={HomeNavigator} options={{ headerShown: false }} />
-          <Stack.Screen name="Nova Refeição" component={CreateMeal} options={{ headerShown: false }} />
-          <Stack.Screen name="Diário Alimentar" component={FoodDiary} options={{ headerShown: false }} />
-          <Stack.Screen name="Plano Nutricional" component={NutritionalPlan} options={{ headerShown: false }} />
+          <Stack.Screen name="NovaRefeicao" component={CreateMeal} options={{ headerShown: false }} />
+          <Stack.Screen name="DiarioAlimentar" component={FoodDiary} options={{ headerShown: false }} />
+          <Stack.Screen name="PlanoNutricional" component={NutritionalPlan} options={{ headerShown: false }} />
           <Stack.Screen name="Recomendacoes" component={PersonalizedRecommendations} options={{ headerShown: false }} />
+          <Stack.Screen name="FaleComProfissional" component={TalkToAProfessional} options={{ headerShown: false }} />
+          <Stack.Screen name="AgendarConsulta" component={ScheduleAppointment} options={{ headerShown: false }} />
         </>
       {/* )} */}
     </Stack.Navigator>

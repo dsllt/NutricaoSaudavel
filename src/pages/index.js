@@ -6,6 +6,8 @@ import CreateMeal from './createMeal';
 import FoodDiary from './foodDiary';
 import NutritionalPlan from './nutritionalPlan';
 import PersonalizedRecommendations from './personalizedRecommendations';
+import TalkToAProfessional from './talkToAProfessional';
+import ScheduleAppointment from './scheduleAppointment';
 
 export {
   Login,
@@ -15,5 +17,7 @@ export {
   CreateMeal,
   FoodDiary,
   NutritionalPlan,
-  PersonalizedRecommendations
+  PersonalizedRecommendations,
+  TalkToAProfessional, 
+  ScheduleAppointment
 };
