@@ -4,12 +4,11 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TextInput,
-  Image,
+
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import ItemInfoCard from '../../components/itemInfoCard';
 
 const recommendations = [
   {
@@ -47,7 +46,7 @@ export default function PersonalizedRecommendations(){
         <RecommendationCategories text="Sem lactose"/>
       </View>
       <View style={styles.recommendations}>
-        {recommendations.map(recommendation => <Recommendations title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image}/>)}
+        {recommendations.map(recommendation => <ItemInfoCard title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image}/>)}
       </View>
 
     </ScrollView>
@@ -63,20 +62,6 @@ function RecommendationCategories({text}){
   )
 }
 
-function Recommendations({image, title, kcal, onPress}){
-  return(
-    <View style={styles.recommendationContainer}>
-      <Image source={image} style={styles.recommendationImage} />
-      <View style={styles.recommendationInfo}>
-        <Text style={styles.recommendationTitle}>{title}</Text>
-        <Text style={styles.textKcalBold}>{kcal} <Text style={styles.textKcalLight}>kcal</Text></Text>
-        <TouchableOpacity style={styles.recommendationButton}>
-          <Text style={styles.recommendationButtonText}>Visualizar</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -112,47 +97,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginTop: 20
   },
-  recommendationContainer: {
-    display: 'flex',
-    flexDirection: "row", 
-    gap: 16,
-  }, 
-  recommendationInfo: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-  recommendationTitle: {
-    fontSize: 18,
-    fontFamily: 'Poppins_600SemiBold',
-  },
-  recommendationImage: {},
-  textKcalBold: {
-    fontSize: 22,
-    fontFamily: 'Poppins_700Bold',
-  },
-  textKcalLight: {
-    fontSize: 16,
-    fontFamily: 'Poppins_400Regular',
-    color: "#8698A8"
-  },
   recommendations: {
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
     marginTop: 20,
   },
-  recommendationButton: {
-    backgroundColor: '#0B7CCE',
-    padding: 16,
-    borderRadius: 10,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 130,
-  },
-  recommendationButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  });
+    });

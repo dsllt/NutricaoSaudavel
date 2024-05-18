@@ -20,14 +20,6 @@ export default function App() {
     return null;
   }
   return (
-    // <Login/>
-    // <Explore />
-    // <Home />
-    // <Profile />
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
     <GestureHandlerRootView style={{ flex: 1 }}>
     <SafeAreaProvider>
       <NavigationContainer>

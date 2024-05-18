@@ -3,11 +3,11 @@ import {
   Text,
   View,
   TextInput,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ExploreCard from '../../components/exploreCard';
+import { useNavigation } from '@react-navigation/native';
 
 const exploreItems = [
   {
@@ -43,6 +43,10 @@ const exploreItems = [
 ];
 
 export default function Explore() {
+  const navigation = useNavigation()
+  function handleExploreCardPress(item){
+    navigation.navigate('InformacoesNutricionais', { item: item })
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>
@@ -55,7 +59,7 @@ export default function Explore() {
 
       <View style={styles.cardContainer}>
         {exploreItems.map((item, index) => {
-          return <ExploreCard key={index} item={item} />;
+          return <ExploreCard key={index} item={item} onPress={() => handleExploreCardPress(item)}/>;
         })}
       </View>
     </ScrollView>
@@ -64,13 +68,13 @@ export default function Explore() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fbf6f3',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: 80,
     padding: 12,
+    paddingBottom: 20,
   },
   title: {
     fontSize: 26,

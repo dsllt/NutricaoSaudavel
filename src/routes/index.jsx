@@ -1,4 +1,4 @@
-import { CreateMeal, Explore, FoodDiary, Home, Login, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
+import { CreateMeal, Explore, FoodDiary, Home, Login, NutritionalInformation, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -21,7 +21,7 @@ function HomeNavigator() {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeNavigator"
       screenOptions={{
         headerShown: false,
         activeTintColor: '#EB4A3B',
@@ -73,13 +73,14 @@ export default function Routes() {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       ) : ( */}
         <>
-          <Stack.Screen name="Home" component={HomeNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="HomeNavigator" component={HomeNavigator} options={{ headerShown: false }} />
           <Stack.Screen name="NovaRefeicao" component={CreateMeal} options={{ headerShown: false }} />
           <Stack.Screen name="DiarioAlimentar" component={FoodDiary} options={{ headerShown: false }} />
           <Stack.Screen name="PlanoNutricional" component={NutritionalPlan} options={{ headerShown: false }} />
           <Stack.Screen name="Recomendacoes" component={PersonalizedRecommendations} options={{ headerShown: false }} />
           <Stack.Screen name="FaleComProfissional" component={TalkToAProfessional} options={{ headerShown: false }} />
           <Stack.Screen name="AgendarConsulta" component={ScheduleAppointment} options={{ headerShown: false }} />
+          <Stack.Screen name="InformacoesNutricionais" component={NutritionalInformation} options={{ headerShown: false }} />
         </>
       {/* )} */}
     </Stack.Navigator>

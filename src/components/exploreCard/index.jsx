@@ -1,8 +1,8 @@
 import { TouchableOpacity, Image, View, Text, StyleSheet } from 'react-native';
 
-export default function ExploreCard({ item }) {
+export default function ExploreCard({ item, onPress }) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={item.image} style={{ height: 140, width: 177 }} />
       <View style={styles.textContainer}>
         <Text style={styles.headerText}>{item.item}</Text>
