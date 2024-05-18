@@ -8,7 +8,8 @@ import NutritionalPlan from './nutritionalPlan';
 import PersonalizedRecommendations from './personalizedRecommendations';
 import TalkToAProfessional from './talkToAProfessional';
 import ScheduleAppointment from './scheduleAppointment';
-import NutritionalInformation from './nutricionalInformation';
+import NutritionalInformation from './nutritionalInformation';
+import ItemInformation from './itemInformation';
 
 export {
   Login,
@@ -21,5 +22,6 @@ export {
   PersonalizedRecommendations,
   TalkToAProfessional, 
   ScheduleAppointment,
-  NutritionalInformation
+  NutritionalInformation,
+  ItemInformation,
 };

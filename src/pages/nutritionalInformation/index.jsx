@@ -34,6 +34,10 @@ export default function NutritionalInformation(){
 
   const item = route.params.item;
 
+  function handleItemPress(item){
+    navigation.navigate('InformacaoDeItem', {item: item})
+  }
+
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -41,8 +45,8 @@ export default function NutritionalInformation(){
       </TouchableOpacity>
       <Text style={styles.title}>{item.item}</Text>
       <View style={styles.itemsContainer}>
-      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image}/>)}
-      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image}/>)}
+      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={()=>{handleItemPress(recommendation)}}/>)}
+      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={()=>{handleItemPress(recommendation)}}/>)}
       </View>
     </ScrollView>
   );

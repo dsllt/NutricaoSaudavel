@@ -1,4 +1,4 @@
-import { CreateMeal, Explore, FoodDiary, Home, Login, NutritionalInformation, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
+import { CreateMeal, Explore, FoodDiary, Home, ItemInformation, Login, NutritionalInformation, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -81,6 +81,7 @@ export default function Routes() {
           <Stack.Screen name="FaleComProfissional" component={TalkToAProfessional} options={{ headerShown: false }} />
           <Stack.Screen name="AgendarConsulta" component={ScheduleAppointment} options={{ headerShown: false }} />
           <Stack.Screen name="InformacoesNutricionais" component={NutritionalInformation} options={{ headerShown: false }} />
+          <Stack.Screen name="InformacaoDeItem" component={ItemInformation} options={{ headerShown: false }} />
         </>
       {/* )} */}
     </Stack.Navigator>

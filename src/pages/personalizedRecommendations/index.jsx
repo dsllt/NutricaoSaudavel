@@ -32,7 +32,9 @@ const recommendations = [
 
 export default function PersonalizedRecommendations(){
   const navigation = useNavigation();
-
+  function handleItemPress(item){
+    navigation.navigate('InformacaoDeItem', {item: item})
+  }
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -46,7 +48,7 @@ export default function PersonalizedRecommendations(){
         <RecommendationCategories text="Sem lactose"/>
       </View>
       <View style={styles.recommendations}>
-        {recommendations.map(recommendation => <ItemInfoCard title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image}/>)}
+      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={(item)=>{handleItemPress(item)}}/>)}
       </View>
 
     </ScrollView>

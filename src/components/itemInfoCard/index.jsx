@@ -7,7 +7,7 @@ export default function ItemInfoCard({image, title, kcal, onPress}) {
       <View style={styles.itemInfo}>
         <Text style={styles.itemTitle}>{title}</Text>
         <Text style={styles.textKcalBold}>{kcal} <Text style={styles.textKcalLight}>kcal</Text></Text>
-        <TouchableOpacity style={styles.itemButton}>
+        <TouchableOpacity style={styles.itemButton} onPress={onPress}>
           <Text style={styles.itemButtonText}>Visualizar</Text>
         </TouchableOpacity>
       </View>
