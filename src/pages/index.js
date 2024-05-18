@@ -10,6 +10,10 @@ import TalkToAProfessional from './talkToAProfessional';
 import ScheduleAppointment from './scheduleAppointment';
 import NutritionalInformation from './nutritionalInformation';
 import ItemInformation from './itemInformation';
+import DailyTip from './dailyTip';
+import Configuration from './configuration';
+import EditProfile from './editProfile';
+import Help from './help';
 
 export {
   Login,
@@ -24,4 +28,8 @@ export {
   ScheduleAppointment,
   NutritionalInformation,
   ItemInformation,
+  DailyTip,
+  Configuration,
+  EditProfile,
+  Help,
 };

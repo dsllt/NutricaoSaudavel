@@ -16,7 +16,7 @@ através da comida</Text>
       <View style={styles.tipContainer}>
         <Text style={styles.tipText}>Dica do dia</Text>
         <TouchableOpacity style={styles.tipButton}>
-          <Text style={styles.tipButtonText}>Acessar</Text>
+          <Text style={styles.tipButtonText} onPress={()=>navigation.navigate('DicaDoDia')}>Acessar</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('NovaRefeicao')}>

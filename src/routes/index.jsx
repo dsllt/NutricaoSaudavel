@@ -1,8 +1,9 @@
-import { CreateMeal, Explore, FoodDiary, Home, ItemInformation, Login, NutritionalInformation, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
+import { Configuration, CreateMeal, DailyTip, EditProfile, Explore, FoodDiary, Help, Home, ItemInformation, Login, NutritionalInformation, NutritionalPlan, PersonalizedRecommendations, Profile, ScheduleAppointment, TalkToAProfessional } from "../pages";
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Feather';
+import { AuthContext } from "../context/authContext";
 
 
 const Tab = createBottomTabNavigator();
@@ -65,13 +66,13 @@ function HomeNavigator() {
 
 
 export default function Routes() {
-  // const { isAuthenticated, isExpiredToken } = useContext(AuthContext);
+  const {isAuthenticated} = useContext(AuthContext);
 
   return (
     <Stack.Navigator>
-      {/* {isExpiredToken || !isAuthenticated ? (
+      { !isAuthenticated ? (
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-      ) : ( */}
+      ) : (
         <>
           <Stack.Screen name="HomeNavigator" component={HomeNavigator} options={{ headerShown: false }} />
           <Stack.Screen name="NovaRefeicao" component={CreateMeal} options={{ headerShown: false }} />
@@ -82,8 +83,12 @@ export default function Routes() {
           <Stack.Screen name="AgendarConsulta" component={ScheduleAppointment} options={{ headerShown: false }} />
           <Stack.Screen name="InformacoesNutricionais" component={NutritionalInformation} options={{ headerShown: false }} />
           <Stack.Screen name="InformacaoDeItem" component={ItemInformation} options={{ headerShown: false }} />
+          <Stack.Screen name="DicaDoDia" component={DailyTip} options={{ headerShown: false }} />
+          <Stack.Screen name="EditarPerfil" component={EditProfile} options={{ headerShown: false }} />
+          <Stack.Screen name="Configuracoes" component={Configuration} options={{ headerShown: false }} />
+          <Stack.Screen name="Ajuda" component={Help} options={{ headerShown: false }} />
         </>
-      {/* )} */}
+      )}
     </Stack.Navigator>
   );
 }

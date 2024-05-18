@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../context/authContext';
 
 
 export default function Login() {
+  const {setIsAuthenticated} = useContext(AuthContext);
 
+function handleLogin() {
+  setIsAuthenticated(true);
+}
 
   return (
     <View style={styles.container}>
@@ -33,7 +39,7 @@ export default function Login() {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={{backgroundColor: '#4DA7DA', ...styles.button}}>
+        <TouchableOpacity style={{backgroundColor: '#4DA7DA', ...styles.button}} onPress={handleLogin}>
           <Text style={{color: 'white'}}>Acessar</Text>
         </TouchableOpacity>
         <Text>OU</Text>

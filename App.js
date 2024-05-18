@@ -6,6 +6,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {  useFonts, Poppins_500Medium, Poppins_700Bold, Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
 import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './src/context';
 
 
 export default function App() {
@@ -22,10 +23,12 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
     <SafeAreaProvider>
-      <NavigationContainer>
-            <StatusBar style="dark" />
-            <Routes />
-      </NavigationContainer>
+      <AuthProvider>
+        <NavigationContainer>
+              <StatusBar style="dark" />
+              <Routes />
+        </NavigationContainer>
+      </AuthProvider>
     </SafeAreaProvider>
   </GestureHandlerRootView>
   );

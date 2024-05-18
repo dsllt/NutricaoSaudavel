@@ -8,8 +8,18 @@ import {
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 export default function Profile() {
+  const {setIsAuthenticated} = useContext(AuthContext);
+
+  const navigation = useNavigation();
+
+  function handleLogout() {
+    setIsAuthenticated(false);
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.userContainer}>
@@ -19,18 +29,18 @@ export default function Profile() {
         <Text style={styles.userTitle}>Maria Fonseca</Text>
       </View>
       <View>
-        <ProfileItem text={'Editar Perfil'} icon={'edit'} />
-        <ProfileItem text={'Configurações'} icon={'settings'} />
-        <ProfileItem text={'Ajuda'} icon={'help-outline'} />
-        <ProfileItem text={'Sair'} icon={'logout'} />
+        <ProfileItem text={'Editar Perfil'} icon={'edit'} onPress={()=>navigation.navigate('EditarPerfil')}/>
+        <ProfileItem text={'Configurações'} icon={'settings'} onPress={()=>navigation.navigate('Configuracoes')}/>
+        <ProfileItem text={'Ajuda'} icon={'help-outline'} onPress={()=>navigation.navigate('Ajuda')}/>
+        <ProfileItem text={'Sair'} icon={'logout'} onPress={handleLogout} />
       </View>
     </ScrollView>
   );
 }
 
-function ProfileItem({ text, icon }) {
+function ProfileItem({ text, icon, onPress }) {
   return (
-    <TouchableOpacity style={styles.itemContainer}>
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.itemText}>
         <MaterialIcons name={icon} size={20} color="#000" />
         <Text>{text}</Text>
