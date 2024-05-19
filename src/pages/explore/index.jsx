@@ -8,10 +8,11 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ExploreCard from '../../components/exploreCard';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
 
 export default function Explore() {
+  const [search, setSearch] = useState('');
   const {nutritionalInformation} = useContext(UserContext);
 
   let infoByCategory = {};
@@ -24,11 +25,12 @@ export default function Explore() {
   }
   let infoByCategoryArray = Object.entries(infoByCategory);
 
-
   const navigation = useNavigation()
+
   function handleExploreCardPress(item){
     navigation.navigate('InformacoesNutricionais', { item: item })
   }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>
@@ -36,16 +38,27 @@ export default function Explore() {
       </Text>
       <View style={styles.inputContainer}>
         <Icon name="search" size={20} color="#000" style={styles.icon} />
-        <TextInput style={styles.input} placeholder="Pesquisar" />
+        <TextInput           
+          style={styles.input} 
+          placeholder="Pesquisar" 
+          value={search} 
+          onChangeText={text => setSearch(text)}
+        />
       </View>
 
       <View style={styles.cardContainer}>
-        {infoByCategoryArray.map((item, i) => <ExploreCard key={i} item={item} onPress={() => handleExploreCardPress(item)}/>)}
-
-
-        {/* {exploreItems.map((item, index) => {
-          return <ExploreCard key={index} item={item} onPress={() => handleExploreCardPress(item)}/>;
-        })} */}
+      {infoByCategoryArray
+        .filter(([category, items]) => 
+          category.toLowerCase().includes(search.toLowerCase()) ||
+          items.some(item => item.title.toLowerCase().includes(search.toLowerCase()))
+        )
+        .map((item, i) => 
+          <ExploreCard 
+            key={i} 
+            item={item} 
+            onPress={() => handleExploreCardPress(item)}
+          />)
+      }
       </View>
     </ScrollView>
   );
