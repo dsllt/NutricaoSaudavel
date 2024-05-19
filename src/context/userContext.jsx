@@ -187,7 +187,7 @@ const nutritionalInformationData = [
     "specification": "Laranja",
     "description": "Fonte de vitamina A e antioxidantes.",
     "kcal": "30",
-    "image": "https://cdn.pixabay.com/photo/2016/10/25/13/39/carrots-1768851_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "vegetais"
   },
   {
@@ -196,7 +196,7 @@ const nutritionalInformationData = [
     "specification": "Verde",
     "description": "Rico em cálcio e vitamina C.",
     "kcal": "45",
-    "image": "https://cdn.pixabay.com/photo/2017/11/18/17/09/broccoli-2960507_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1628773822503-930a7eaecf80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "vegetais"
   },
   {
@@ -205,7 +205,7 @@ const nutritionalInformationData = [
     "specification": "Fuji",
     "description": "Doce e crocante, rica em fibras e antioxidantes.",
     "kcal": "60",
-    "image": "https://cdn.pixabay.com/photo/2016/03/05/19/02/fruit-1238363_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "frutas"
   },
   {
@@ -214,7 +214,7 @@ const nutritionalInformationData = [
     "specification": "Prata",
     "description": "Fonte de potássio e energia.",
     "kcal": "90",
-    "image": "https://cdn.pixabay.com/photo/2016/03/05/20/08/bananas-1239422_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "frutas"
   },
   {
@@ -223,7 +223,7 @@ const nutritionalInformationData = [
     "specification": "Fresco",
     "description": "Rico em vitamina C e antioxidantes.",
     "kcal": "30",
-    "image": "https://cdn.pixabay.com/photo/2016/04/01/09/32/berries-1296580_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1588165171080-c89acfa5ee83?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "frutas"
   },
   {
@@ -232,7 +232,7 @@ const nutritionalInformationData = [
     "specification": "Grãos Integrais",
     "description": "Fonte de fibras e nutrientes.",
     "kcal": "80",
-    "image": "https://cdn.pixabay.com/photo/2018/03/17/20/14/bread-3234151_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1626423642268-24cc183cbacb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "paes"
   },
   {
@@ -241,7 +241,7 @@ const nutritionalInformationData = [
     "specification": "Folhado",
     "description": "Macio e crocante.",
     "kcal": "120",
-    "image": "https://cdn.pixabay.com/photo/2016/10/25/13/43/croissants-1768916_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1623334044303-241021148842?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "paes"
   },
   {
@@ -250,7 +250,7 @@ const nutritionalInformationData = [
     "specification": "Mineiro",
     "description": "Queijo derretido em um pãozinho macio.",
     "kcal": "150",
-    "image": "https://cdn.pixabay.com/photo/2017/09/14/18/26/brazilian-cheese-bread-2740859_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1559141680-d0bd7bc5af84?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "paes"
   },
   {
@@ -259,7 +259,7 @@ const nutritionalInformationData = [
     "specification": "Tradicional",
     "description": "Doce de chocolate e leite condensado.",
     "kcal": "100",
-    "image": "https://cdn.pixabay.com/photo/2017/09/25/18/22/chocolate-2787363_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1630953900113-ab915924aab2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "doces"
   },
   {
@@ -268,7 +268,7 @@ const nutritionalInformationData = [
     "specification": "Com Cobertura de Chocolate",
     "description": "Bolo fofinho com cenoura e cobertura de chocolate.",
     "kcal": "200",
-    "image": "https://cdn.pixabay.com/photo/2016/11/18/22/26/carrot-cake-1839266_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1622926421334-6829deee4b4b?q=80&w=2192&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "doces"
   },
   {
@@ -277,7 +277,7 @@ const nutritionalInformationData = [
     "specification": "Caseiro",
     "description": "Sobremesa cremosa e suculenta.",
     "kcal": "180",
-    "image": "https://cdn.pixabay.com/photo/2016/11/29/13/42/pudding-1868573_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1637264596042-fcf205a81e1e?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "doces"
   },
   {
@@ -286,7 +286,7 @@ const nutritionalInformationData = [
     "specification": "Al Dente",
     "description": "Massa italiana clássica.",
     "kcal": "220",
-    "image": "https://cdn.pixabay.com/photo/2017/05/07/08/56/spaghetti-2298288_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1556761223-4c4282c73f77?q=80&w=2130&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "massas"
   },
   {
@@ -295,7 +295,7 @@ const nutritionalInformationData = [
     "specification": "Bolonhesa",
     "description": "Camadas de massa, carne e queijo gratinado.",
     "kcal": "300",
-    "image": "https://cdn.pixabay.com/photo/2016/11/23/18/32/lasagna-1850666_960_720.jpg",
+    "image": "https://plus.unsplash.com/premium_photo-1671547330493-b07d377085ca?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "massas"
   },
   {
@@ -304,7 +304,7 @@ const nutritionalInformationData = [
     "specification": "Recheado com Queijo",
     "description": "Massa recheada com queijo, cozida em molho de tomate.",
     "kcal": "250",
-    "image": "https://cdn.pixabay.com/photo/2017/07/16/10/43/tortellini-2506704_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1628885405379-5d58de03edb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "massas"
   },
   {
@@ -313,7 +313,7 @@ const nutritionalInformationData = [
     "specification": "Japonês",
     "description": "Rico em antioxidantes e estimulante.",
     "kcal": "5",
-    "image": "https://cdn.pixabay.com/photo/2017/05/29/19/23/matcha-2356768_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "chas"
   },
   {
@@ -322,7 +322,7 @@ const nutritionalInformationData = [
     "specification": "Natural",
     "description": "Relaxante e calmante.",
     "kcal": "0",
-    "image": "https://cdn.pixabay.com/photo/2016/11/29/08/43/chamomile-1867049_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1559666548-3885a4a5e5ee?q=80&w=2202&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "chas"
   },
   {
@@ -331,7 +331,7 @@ const nutritionalInformationData = [
     "specification": "Com Gengibre",
     "description": "Refrescante e diurético.",
     "kcal": "10",
-    "image": "https://cdn.pixabay.com/photo/2017/11/25/20/05/hibiscus-tea-2973585_960_720.jpg",
+    "image": "https://images.unsplash.com/photo-1594136604897-29f7e564db27?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "category": "chas"
   }
 ];
