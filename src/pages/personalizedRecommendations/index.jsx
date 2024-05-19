@@ -4,37 +4,22 @@ import {
   Text,
   TouchableOpacity,
   View,
-
+Image
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import ItemInfoCard from '../../components/itemInfoCard';
-
-const recommendations = [
-  {
-    title: 'Tapioca',
-    kcal: 300,
-    image: require('../../../assets/images/recommendations/Tapioca.png'),
-  },
-  {
-    title: 'Overnight Oats',
-    kcal: 350,
-    image: require('../../../assets/images/recommendations/Oats.png'),
-  },
-  {
-    title: 'Risoto Vegano',
-    kcal: 580,
-    image: require('../../../assets/images/recommendations/RisotoVegano.png'),
-  },
-
-
-];
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
 export default function PersonalizedRecommendations(){
+  const {nutritionalInformation} = useContext(UserContext);
   const navigation = useNavigation();
+
   function handleItemPress(item){
     navigation.navigate('InformacaoDeItem', {item: item})
   }
+  
   return(
     <ScrollView contentContainerStyle={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -48,9 +33,8 @@ export default function PersonalizedRecommendations(){
         <RecommendationCategories text="Sem lactose"/>
       </View>
       <View style={styles.recommendations}>
-      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={(item)=>{handleItemPress(item)}}/>)}
+        {nutritionalInformation.map((item, index) => <ItemInfoCard key={index} title={item.title} kcal={item.kcal} image={item.image} onPress={()=>{handleItemPress(item)}}/>)}
       </View>
-
     </ScrollView>
   )
 }
@@ -64,10 +48,8 @@ function RecommendationCategories({text}){
   )
 }
 
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fbf6f3',
     display: 'flex',
     flexDirection: 'column',

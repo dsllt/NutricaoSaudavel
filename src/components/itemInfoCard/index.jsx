@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, StyleSheet, Image } from "react-native";
 export default function ItemInfoCard({image, title, kcal, onPress}) {
   return(
     <View style={styles.itemContainer}>
-      <Image source={image} style={styles.itemImage} />
+      <Image source={{uri: image}} style={styles.itemImage} />
       <View style={styles.itemInfo}>
         <Text style={styles.itemTitle}>{title}</Text>
         <Text style={styles.textKcalBold}>{kcal} <Text style={styles.textKcalLight}>kcal</Text></Text>
@@ -13,7 +13,7 @@ export default function ItemInfoCard({image, title, kcal, onPress}) {
       </View>
     </View>
   )
-}
+} 
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -30,7 +30,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Poppins_600SemiBold',
   },
-  itemImage: {},
+  itemImage: {
+    width: 177,
+    height: 128,
+    borderRadius: 10
+  },
   textKcalBold: {
     fontSize: 22,
     fontFamily: 'Poppins_700Bold',

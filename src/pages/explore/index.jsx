@@ -8,41 +8,23 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ExploreCard from '../../components/exploreCard';
 import { useNavigation } from '@react-navigation/native';
-
-const exploreItems = [
-  {
-    item: 'Vegetais',
-    quantity: 42,
-    image: require('../../../assets/images/explorar/Vegetais.png'),
-  },
-  {
-    item: 'Frutas',
-    quantity: 32,
-    image: require('../../../assets/images/explorar/Frutas.png'),
-  },
-  {
-    item: 'Pães',
-    quantity: 43,
-    image: require('../../../assets/images/explorar/Paes.png'),
-  },
-  {
-    item: 'Doces',
-    quantity: 12,
-    image: require('../../../assets/images/explorar/Doces.png'),
-  },
-  {
-    item: 'Massas',
-    quantity: 12,
-    image: require('../../../assets/images/explorar/Massas.png'),
-  },
-  {
-    item: 'Chás',
-    quantity: 12,
-    image: require('../../../assets/images/explorar/Chas.png'),
-  },
-];
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
 export default function Explore() {
+  const {nutritionalInformation} = useContext(UserContext);
+
+  let infoByCategory = {};
+
+  for (let item of nutritionalInformation) {
+    if (!infoByCategory[item.category]) {
+      infoByCategory[item.category] = [];
+    }
+    infoByCategory[item.category].push(item);
+  }
+  let infoByCategoryArray = Object.entries(infoByCategory);
+
+
   const navigation = useNavigation()
   function handleExploreCardPress(item){
     navigation.navigate('InformacoesNutricionais', { item: item })
@@ -58,9 +40,12 @@ export default function Explore() {
       </View>
 
       <View style={styles.cardContainer}>
-        {exploreItems.map((item, index) => {
+        {infoByCategoryArray.map((item, i) => <ExploreCard key={i} item={item} onPress={() => handleExploreCardPress(item)}/>)}
+
+
+        {/* {exploreItems.map((item, index) => {
           return <ExploreCard key={index} item={item} onPress={() => handleExploreCardPress(item)}/>;
-        })}
+        })} */}
       </View>
     </ScrollView>
   );

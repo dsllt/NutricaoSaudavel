@@ -1,16 +1,43 @@
 import { useNavigation } from "@react-navigation/native";
+import { useContext } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
+import { UserContext } from "../../context/userContext";
 
 export default function Home(){
+  const {user, meals} = useContext(UserContext);
+  const userName = user.name.split(' ')[0];
+
+  let mealsByDate = {};
+
+  for (let meal of meals) {
+    let date = meal.date.split('T')[0]; 
+    if (!mealsByDate[date]) {
+      mealsByDate[date] = [];
+    }
+    mealsByDate[date].push(meal);
+  }
+  
+  let dates = Object.keys(mealsByDate).sort((a, b) => new Date(b) - new Date(a));
+  
+  let consecutiveDaysInDiet = 0;
+  for (let date of dates) {
+    if (new Date(date) > new Date()) continue; 
+    if (mealsByDate[date].every(meal => meal.is_in_diet)) {
+      consecutiveDaysInDiet++;
+    } else {
+      break;
+    }
+  }
+
   const navigation = useNavigation();
   return(
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Olá, Maria</Text>
+      <Text style={styles.title}>Olá, {userName}</Text>
       <Text style={styles.subtitle}>Descubra uma vida mais saudável 
 através da comida</Text>
       <View style={styles.reviewContainer}>
-        <Text style={styles.title}>há 22 dias</Text>
+        <Text style={styles.title}>há {consecutiveDaysInDiet} {consecutiveDaysInDiet === 1 ? 'dia' : 'dias'}</Text>
         <Text style={styles.reviewText}>com nutrientes dentro do planejado.</Text>
       </View>
       <View style={styles.tipContainer}>

@@ -4,13 +4,31 @@ import {
   Text,
   TouchableOpacity,
   View,
-  TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
+import DateItem from '../../components/dateItem';
 
 export default function FoodDiary(){
+  const {meals} = useContext(UserContext);
+
+  let mealsByDate = {};
+
+  for (let meal of meals) {
+    let date = meal.date.split('T')[0]; 
+    if (!mealsByDate[date]) {
+      mealsByDate[date] = [];
+    }
+    mealsByDate[date].push(meal);
+  }
+  let mealsByDateArray = Object.entries(mealsByDate);
+
+  mealsByDateArray.sort((a, b) => new Date(b[0]) - new Date(a[0]));
+
+  let sortedMealsByDate = Object.fromEntries(mealsByDateArray);
+
   const navigation = useNavigation();
 
   return(
@@ -19,38 +37,37 @@ export default function FoodDiary(){
         <Icon name="left" size={20} color="#000" />
       </TouchableOpacity>
       <Text style={styles.title}>Diário Alimentar</Text>
-      <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Nova Refeição')}>
+      <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('NovaRefeicao')}>
       <Icon name="plus" size={20} color="#fff" />
         <Text style={styles.registerButtonText}>Nova Refeição</Text>
       </TouchableOpacity>
 
       <View style={styles.dateContainer}>
-        <Text style={styles.dateText}>12.04.24</Text>
-        <DateItem hour={"20:00"} meal={"Omelete"} status={"no"}/>
-        <DateItem hour={"16:00"} meal={"Whey protein com leite"} status={"yes"}/>
-        <DateItem hour={"12:30"} meal={"Salada cesar com frango grelhado"} status={"yes"}/>
-        <DateItem hour={"09:30"} meal={"Vitamina de banana com abacate"} status={"yes"}/>
+      {Object.entries(sortedMealsByDate).map(([date, meals]) => {
+        let dateObj = new Date(date);
+        let formattedDate = dateObj.toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          }).replace(/\//g, '.');
+        return(
+          <>
+          <Text key={date} style={styles.dateText}>{formattedDate}</Text>
+          {meals.map(meal => 
+            <DateItem key={meal.id} hour={meal.time} meal={meal.title} status={meal.is_in_diet}/>
+            )}
+          </>
+        )})}
       </View>
 
     </ScrollView>
   );
 }
 
-function DateItem({hour, meal, status}){
-  return(
-    <View style={styles.dateItem}>
-      <Text style={styles.hourText}>{hour}</Text>
-      <View style={styles.itemInfo}>
-        <Text style={styles.mealText}>{meal}</Text>
-        <View style={{...styles.statusContainer, backgroundColor: status === 'yes' ? '#CBE4B4' : '#F3BABD'}}></View>
-      </View>
-  </View>
-  )
-}
+
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fbf6f3',
     display: 'flex',
     flexDirection: 'column',
@@ -89,37 +106,5 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 20,
     fontFamily: 'Poppins_700Bold',
-  },
-  dateItem: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-  },
-  hourText: {
-    fontSize: 12,
-    fontFamily: 'Poppins_700Bold',
-    width: 40,
-    marginRight: 10,
-  },
-  itemInfo: {
-    display: 'flex',
-    flexDirection: 'row',
-    paddingLeft: 10,
-    borderLeftWidth: 1,
-    borderLeftColor: '#B9BBBC',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flex: 1, 
-    flexWrap: 'wrap',
-  },
-  mealText: {
-    fontSize: 14,
-    fontFamily: 'Poppins_500Medium',
-  },
-  statusContainer: {
-    width: 10,
-    height: 10,
-    borderRadius: 9999
   },
 });

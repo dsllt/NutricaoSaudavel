@@ -7,17 +7,14 @@ export default function ItemInformation() {
 
   const item = route.params.item;
 
-  
   return (
     <ScrollView style={styles.container}>
-      <Image source={item.image} style={styles.itemImage}/>
+      <Image source={{uri: item.image}} style={styles.itemImage}/>
       <View style={styles.scroll} >
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.textKcalBold}>{item.kcal} <Text style={styles.textKcalLight}>kcal</Text></Text>
-        <Text style={styles.itemSpecification}>Especificação</Text>
-        <Text style={styles.itemDescription}>
-          Seu sabor é levemente mais amargo do que outros tipos de alface. Pode ser incorporada a diversos pratos, já que oferece crocância e frescor a qualquer receita, de saladas a acompanhamentos.
-          A alface-romana é rica nas vitaminas A e C, nutrientes antioxidantes que ajudam a prevenir doenças do coração, diabetes e envelhecimento precoce.
+        <Text style={styles.itemSpecification}>{item.specification}</Text>
+        <Text style={styles.itemDescription}>{item.description}
         </Text>
         <TouchableOpacity style={styles.itemButton} onPress={()=>navigation.goBack()}>
           <Text style={styles.itemButtonText}> Voltar</Text>

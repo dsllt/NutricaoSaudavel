@@ -7,6 +7,7 @@ import {  useFonts, Poppins_500Medium, Poppins_700Bold, Poppins_400Regular, Popp
 import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/context';
+import UserProvider from './src/context/userContext';
 
 
 export default function App() {
@@ -24,10 +25,12 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
     <SafeAreaProvider>
       <AuthProvider>
+        <UserProvider>
         <NavigationContainer>
               <StatusBar style="dark" />
               <Routes />
         </NavigationContainer>
+        </UserProvider>
       </AuthProvider>
     </SafeAreaProvider>
   </GestureHandlerRootView>

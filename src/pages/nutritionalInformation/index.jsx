@@ -8,31 +8,14 @@ import {
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import ItemInfoCard from '../../components/itemInfoCard';
-const recommendations = [
-  {
-    title: 'Tapioca',
-    kcal: 300,
-    image: require('../../../assets/images/recommendations/Tapioca.png'),
-  },
-  {
-    title: 'Overnight Oats',
-    kcal: 350,
-    image: require('../../../assets/images/recommendations/Oats.png'),
-  },
-  {
-    title: 'Risoto Vegano',
-    kcal: 580,
-    image: require('../../../assets/images/recommendations/RisotoVegano.png'),
-  },
 
-
-];
 export default function NutritionalInformation(){
   const navigation = useNavigation()
 
   const route = useRoute(); 
 
   const item = route.params.item;
+  let capitalizedItem = item[0].charAt(0).toUpperCase() + item[0].slice(1);
 
   function handleItemPress(item){
     navigation.navigate('InformacaoDeItem', {item: item})
@@ -43,10 +26,9 @@ export default function NutritionalInformation(){
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name="left" size={20} color="#000" />
       </TouchableOpacity>
-      <Text style={styles.title}>{item.item}</Text>
+      <Text style={styles.title}>{capitalizedItem}</Text>
       <View style={styles.itemsContainer}>
-      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={()=>{handleItemPress(recommendation)}}/>)}
-      {recommendations.map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={()=>{handleItemPress(recommendation)}}/>)}
+      {item[1].map((recommendation, index) => <ItemInfoCard key={index} title={recommendation.title} kcal={recommendation.kcal} image={recommendation.image} onPress={()=>{handleItemPress(recommendation)}}/>)}
       </View>
     </ScrollView>
   );
