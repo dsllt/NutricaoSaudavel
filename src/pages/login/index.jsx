@@ -6,10 +6,32 @@ import { AuthContext } from '../../context/authContext';
 
 
 export default function Login() {
-  const {setIsAuthenticated} = useContext(AuthContext);
+  const {setIsAuthenticated, setUser} = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-function handleLogin() {
-  setIsAuthenticated(true);
+async function handleLogin() {
+  const body = {
+    email: email,
+    password: password
+  }
+  const response = await fetch('http://0.0.0.0:8080/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  const data = await response.json();
+
+  if (data.message === 'User logged successfully') {
+    setIsAuthenticated(true);
+    setUser(data.user)
+  } else {
+    setError('Credenciais inválidas.')
+  }
 }
 
   return (
@@ -26,6 +48,8 @@ function handleLogin() {
           <TextInput
             style={{...styles.input, marginBottom: 50}}
             placeholder='Digite seu e-mail'
+            onChangeText={text => setEmail(text)}
+            autoCapitalize="none"
           />
         </View>
         <View style={{display: 'flex', flexDirection: 'row', gap: 5}}>
@@ -33,9 +57,12 @@ function handleLogin() {
           <TextInput
             style={{...styles.input}}
             placeholder='Digite sua senha'
+            onChangeText={text => setPassword(text)}
+            secureTextEntry
           />
         </View>
         <Text style={{alignSelf: 'flex-end', fontSize:12, fontWeight: '400', color: "#A3A3A3", marginTop: 5}}>Esqueceu a senha?</Text>
+        <Text style={{alignSelf: 'center', fontSize:14, fontWeight: '400', color: "#E86D52"}}>{error}</Text>
       </View>
 
       <View style={styles.buttonsContainer}>
