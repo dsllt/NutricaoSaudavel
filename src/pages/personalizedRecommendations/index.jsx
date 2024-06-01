@@ -14,6 +14,9 @@ import { UserContext } from '../../context/userContext';
 
 export default function PersonalizedRecommendations(){
   const {nutritionalInformation} = useContext(UserContext);
+  const userNutritionalInfo = nutritionalInformation.filter(recommendation => 
+    recommendation.recommendation_category === 'sem_gluten' || 
+    recommendation.recommendation_category === 'sem_lactose')
   const navigation = useNavigation();
 
   function handleItemPress(item){
@@ -28,12 +31,10 @@ export default function PersonalizedRecommendations(){
       <Text style={styles.title}>Recomendações personalizadas</Text>
       <View style={styles.categoriesRecommendationsContainer}>
         <RecommendationCategories text="Sem glúten"/>
-        <RecommendationCategories text="Baixo teor de sódio"/>
-        <RecommendationCategories text="Rico em fibras"/>
         <RecommendationCategories text="Sem lactose"/>
       </View>
       <View style={styles.recommendations}>
-        {nutritionalInformation.map((item, index) => <ItemInfoCard key={index} title={item.title} kcal={item.kcal} image={item.image} onPress={()=>{handleItemPress(item)}}/>)}
+        {userNutritionalInfo.map((item, index) => <ItemInfoCard key={index} title={item.title} kcal={item.kcal} image={item.image} onPress={()=>{handleItemPress(item)}}/>)}
       </View>
     </ScrollView>
   )
