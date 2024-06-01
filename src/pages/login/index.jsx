@@ -1,12 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Login() {
-  const {setIsAuthenticated, setUser} = useContext(AuthContext);
+  const {setIsAuthenticated} = useContext(AuthContext);
+  const {setUser} = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -27,11 +30,13 @@ async function handleLogin() {
   const data = await response.json();
 
   if (data.message === 'User logged successfully') {
-    setIsAuthenticated(true);
     setUser(data.user)
+    const jsonValue = JSON.stringify(data.user);
+    await AsyncStorage.setItem('@user_data', jsonValue);
   } else {
     setError('Credenciais inválidas.')
   }
+  setIsAuthenticated(true);
 }
 
   return (

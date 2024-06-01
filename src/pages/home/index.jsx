@@ -5,30 +5,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { UserContext } from "../../context/userContext";
 
 export default function Home(){
-  const {user, meals} = useContext(UserContext);
+  const {user, consecutiveDaysInDiet} = useContext(UserContext);
   const userName = user.name.split(' ')[0];
-
-  let mealsByDate = {};
-
-  for (let meal of meals) {
-    let date = meal.date.split('T')[0]; 
-    if (!mealsByDate[date]) {
-      mealsByDate[date] = [];
-    }
-    mealsByDate[date].push(meal);
-  }
-  
-  let dates = Object.keys(mealsByDate).sort((a, b) => new Date(b) - new Date(a));
-  
-  let consecutiveDaysInDiet = 0;
-  for (let date of dates) {
-    if (new Date(date) > new Date()) continue; 
-    if (mealsByDate[date].every(meal => meal.is_in_diet)) {
-      consecutiveDaysInDiet++;
-    } else {
-      break;
-    }
-  }
 
   const navigation = useNavigation();
   return(

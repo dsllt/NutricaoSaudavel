@@ -1,10 +1,6 @@
-import { React, createContext, useState } from 'react';
-const userData = {
-    "id": "d0b77b9b-19dc-45a1-883c-d8aa0713f5bd",
-    "name": "Maria da Silva",
-    "email": "maria@test.com",
-    "password": "password"
-  }
+import { React, createContext, useContext, useEffect, useState } from 'react';
+import { AuthContext } from './authContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const mealsData = [
   {
@@ -399,10 +395,63 @@ const nutritionalPlanData = [
 export const UserContext = createContext({});
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState(userData);
-  const [meals, setMeals] = useState(mealsData);
+  const {setIsAuthenticated} = useContext(AuthContext);
+
+  const [user, setUser] = useState({});
+  const [meals, setMeals] = useState({});
   const [nutritionalInformation, setNutritionalInformation] = useState(nutritionalInformationData);
   const [nutritionalPlan, setNutritionalPlan] = useState(nutritionalPlanData);
+  const [consecutiveDaysInDiet, setConsecutiveDaysInDiet] = useState(0);
+
+
+  useEffect(()=> {
+    const getUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@user_data');
+        if(jsonValue!=null){
+          setUser(JSON.parse(jsonValue));
+        }
+        return true;
+      } catch (e) {
+        console.error("Error retrieving user data", e);
+      }
+    };
+    getUserData();
+  },[])
+
+  useEffect(()=>{
+
+    async function getMeals(){
+      const response = await fetch('http://0.0.0.0:8080/diary', {
+        method: 'GET',
+      });
+      const meals = await response.json();
+      const userMeals = meals.filter(meal=> meal.user_id === user.id)
+      setMeals(userMeals);
+
+      let mealsByDate = {};
+      for (let meal of userMeals) {
+        let date = meal.date; 
+        if (!mealsByDate[date]) {
+          mealsByDate[date] = [];
+        }
+        mealsByDate[date].push(meal);
+      }
+      let dates = Object.keys(mealsByDate).sort((a, b) => new Date(b) - new Date(a));
+      for (let date of dates) {
+        if (new Date(date) > new Date()) continue; 
+        if (mealsByDate[date].every(meal => meal.is_in_diet)) {
+          setConsecutiveDaysInDiet(prevState => prevState + 1)
+        } else {
+          break;
+        }
+      }
+    }
+    if (Object.keys(user).length !== 0){
+      getMeals()
+      setIsAuthenticated(true);
+    }
+  }, [user])
 
   const userObj = {
     user, 
@@ -412,7 +461,8 @@ export default function UserProvider({ children }) {
     nutritionalInformation, 
     setNutritionalInformation,
     nutritionalPlan, 
-    setNutritionalPlan
+    setNutritionalPlan,
+    consecutiveDaysInDiet
     };
 
   return <UserContext.Provider value={userObj}>{children}</UserContext.Provider>;

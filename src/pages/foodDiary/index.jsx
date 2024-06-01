@@ -52,7 +52,7 @@ export default function FoodDiary(){
           }).replace(/\//g, '.');
         return(
           <>
-          <Text key={date} style={styles.dateText}>{formattedDate}</Text>
+          <Text key={formattedDate} style={styles.dateText}>{formattedDate}</Text>
           {meals.map(meal => 
             <DateItem key={meal.id} hour={meal.time} meal={meal.title} status={meal.is_in_diet}/>
             )}
