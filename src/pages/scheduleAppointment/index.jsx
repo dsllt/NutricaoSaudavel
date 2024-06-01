@@ -9,17 +9,62 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 export default function ScheduleAppointment() {
+  const {user} = useContext(AuthContext);
   const navigation = useNavigation();
 
+  const [name, setName] = useState('');
   const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  const [error, setError] = useState('');
 
-  const onChange = (event, selectedDate) => {
+  const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
   };
+  const onChangeTime = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setTime(currentDate);
+  };
+
+  async function handleSubmit(){
+    let hours = time.getUTCHours();
+    let minutes = time.getUTCMinutes();
+  
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+  
+    const timeStr = `${hours}:${minutes}`;
+
+    const body = {
+      professional_name: name,
+      date: date.toISOString().slice(0, 10),
+      time: timeStr,
+      user_id: user.id,
+    }
+    
+    const response = await fetch('http://0.0.0.0:8080/appointment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+  
+    const data = await response.json();
+  
+    if (data.message === 'appointment information added successfully') {
+      setName('')
+      setDate(new Date())
+      setTime(new Date())
+      setError('')
+    } else {
+      setError('Erro ao registrar consulta, tente novamente.')
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -34,6 +79,8 @@ export default function ScheduleAppointment() {
           style={styles.inputInput}
           autoCapitalize="words"
           placeholder="Indique o nome do profissional"
+          onChangeText={text => setName(text)}
+          value={name}
         />
       </View>
       <View style={styles.dateContainer}>
@@ -44,24 +91,25 @@ export default function ScheduleAppointment() {
             value={date}
             mode="date"
             is24Hour={true}
-            onChange={onChange}
+            onChange={onChangeDate}
           />
         </View>
         <View style={{ ...styles.inputContainer, width: '50%' }}>
           <Text style={styles.inputLabel}>Hora</Text>
           <DateTimePicker
             testID="dateTimePicker"
-            value={date}
+            value={time}
             mode="time"
             is24Hour={true}
-            onChange={onChange}
+            onChange={onChangeTime}
           />
         </View>
       </View>
 
-      <TouchableOpacity style={styles.registerButton}>
+      <TouchableOpacity style={styles.registerButton} onPress={handleSubmit}>
         <Text style={styles.registerButtonText}>Agendar</Text>
       </TouchableOpacity>
+      <Text style={styles.textError}>{error}</Text>
     </View>
   );
 }
@@ -138,4 +186,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  textError: {
+    alignSelf: 'center', 
+    fontSize:16, 
+    fontWeight: '400', 
+    color: "#E86D52", 
+    marginTop: 5
+  }
 });
