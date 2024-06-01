@@ -9,10 +9,46 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 export default function TalkToAProfessional() {
+  const {user} = useContext(AuthContext);
+
+  const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
+  const [error, setError] = useState('');
+
   const navigation = useNavigation();
+
+  async function handleSubmit(){
+    const date = new Date();
+
+    const body = {
+      subject: subject,
+      description: description,
+      user_id: user.id,
+      created_at: date.toISOString().slice(0, 10),
+    }
+    
+    const response = await fetch('http://0.0.0.0:8080/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+  
+    const data = await response.json();
+  
+    if (data.message === 'chat information added successfully') {
+      setSubject('')
+      setDescription('')
+      setError('')
+    } else {
+      setError('Erro ao enviar solicitação, tente novamente.')
+    }
+  }
 
   return(
     <ScrollView contentContainerStyle={styles.container}>
@@ -27,6 +63,8 @@ export default function TalkToAProfessional() {
         style={styles.inputInput}
         autoCapitalize="words"
         placeholder="Defina o assunto"
+        onChangeText={text => setSubject(text)}
+        value={subject}
       />
     </View>
     <View style={styles.inputContainer}>
@@ -36,12 +74,15 @@ export default function TalkToAProfessional() {
         multiline
         autoCapitalize="sentences"
         placeholder="Descreva sua solicitação"
+        onChangeText={text => setDescription(text)}
+        value={description}
       />
     </View>
 
-    <TouchableOpacity style={styles.registerButton}>
+    <TouchableOpacity style={styles.registerButton} onPress={handleSubmit}>
       <Text style={styles.registerButtonText}>Enviar</Text>
     </TouchableOpacity>
+    <Text style={styles.textError}>{error}</Text>
   </ScrollView>
   )
 }
@@ -118,4 +159,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  textError: {
+    alignSelf: 'center', 
+    fontSize:16, 
+    fontWeight: '400', 
+    color: "#E86D52", 
+    marginTop: 5
+  }
 });
