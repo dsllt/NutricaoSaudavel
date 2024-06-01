@@ -12,12 +12,12 @@ import { UserContext } from '../../context/userContext';
 import PlanItem from '../../components/plaItem';
 
 export default function NutritionalPlan(){
-  const {nutritionalPlan} = useContext(UserContext);
+  const {mealPlan} = useContext(UserContext);
   const navigation = useNavigation();
 
   let itemByMeal = {};
 
-  for (let item of nutritionalPlan) {
+  for (let item of mealPlan) {
     if (!itemByMeal[item.meal]) {
       itemByMeal[item.meal] = [];
     }

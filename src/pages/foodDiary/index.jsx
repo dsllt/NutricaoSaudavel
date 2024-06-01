@@ -12,24 +12,22 @@ import { UserContext } from '../../context/userContext';
 import DateItem from '../../components/dateItem';
 
 export default function FoodDiary(){
+  const navigation = useNavigation();
+
   const {meals} = useContext(UserContext);
 
-  let mealsByDate = {};
+  meals.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  for (let meal of meals) {
-    let date = meal.date.split('T')[0]; 
-    if (!mealsByDate[date]) {
-      mealsByDate[date] = [];
+  const groupedByDate = {};
+
+  meals.forEach(item => {
+    const date = item.date;
+    if (!groupedByDate[date]) {
+      groupedByDate[date] = [];
     }
-    mealsByDate[date].push(meal);
-  }
-  let mealsByDateArray = Object.entries(mealsByDate);
+    groupedByDate[date].push(item);
+  });
 
-  mealsByDateArray.sort((a, b) => new Date(b[0]) - new Date(a[0]));
-
-  let sortedMealsByDate = Object.fromEntries(mealsByDateArray);
-
-  const navigation = useNavigation();
 
   return(
     <ScrollView contentContainerStyle={styles.container}>
@@ -43,7 +41,7 @@ export default function FoodDiary(){
       </TouchableOpacity>
 
       <View style={styles.dateContainer}>
-      {Object.entries(sortedMealsByDate).map(([date, meals]) => {
+      {Object.entries(groupedByDate).map(([date, meals]) => {
         let dateObj = new Date(date);
         let formattedDate = dateObj.toLocaleDateString('pt-BR', {
             day: '2-digit',

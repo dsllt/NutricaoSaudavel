@@ -5,9 +5,11 @@ import {
 } from 'react-native';
 
 export default function DateItem({hour, meal, status}){
+  const [h, m, s] = hour.split(':');
+  const formattedHour = `${h.padStart(2, '0')}:${m.padStart(2, '0')}`;
   return(
     <View style={styles.dateItem}>
-      <Text style={styles.hourText}>{hour.slice(0,5)}</Text>
+      <Text style={styles.hourText}>{formattedHour}</Text>
       <View style={styles.itemInfo}>
         <Text style={styles.mealText}>{meal}</Text>
         <View style={{...styles.statusContainer, backgroundColor: status === true ? '#CBE4B4' : '#F3BABD'}}></View>
