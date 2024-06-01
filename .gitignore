@@ -33,3 +33,4 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+dados_para_requisicoes.js
