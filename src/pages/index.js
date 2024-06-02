@@ -14,6 +14,7 @@ import DailyTip from './dailyTip';
 import Configuration from './configuration';
 import EditProfile from './editProfile';
 import Help from './help';
+import EditMeal from './editMeal';
 
 export {
   Login,
@@ -32,4 +33,5 @@ export {
   Configuration,
   EditProfile,
   Help,
+  EditMeal
 };

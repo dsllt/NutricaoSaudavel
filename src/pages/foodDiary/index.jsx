@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../context/userContext';
 import DateItem from '../../components/dateItem';
 
@@ -27,7 +27,6 @@ export default function FoodDiary(){
     }
     groupedByDate[date].push(item);
   });
-
 
   return(
     <ScrollView contentContainerStyle={styles.container}>
@@ -52,7 +51,7 @@ export default function FoodDiary(){
           <>
           <Text key={formattedDate} style={styles.dateText}>{formattedDate}</Text>
           {meals.map(meal => 
-            <DateItem key={meal.id} hour={meal.time} meal={meal.title} status={meal.is_in_diet}/>
+            <DateItem key={meal.id} id={meal.id} hour={meal.time} meal={meal.title} status={meal.is_in_diet}/>
             )}
           </>
         )})}

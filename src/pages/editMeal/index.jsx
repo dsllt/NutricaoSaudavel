@@ -10,23 +10,28 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
 
-export default function CreateMeal() {
+export default function EditMeal({route}) {
+  const { meals, setMeals } = useContext(UserContext);
+  const { id } = route.params;
+  const meal = meals.filter(m => m.id === id)[0];
+  const mealDate = meal ? new Date(meal.date + 'T' + meal.time) : new Date();
+  
   const navigation = useNavigation();
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
-  const [isInDiet, setIsInDiet] = useState('');
+  const [name, setName] = useState(meal ? meal.title : '');
+  const [description, setDescription] = useState(meal ? meal.description : '');
+  const [date, setDate] = useState(mealDate);
+  const [time, setTime] = useState(mealDate);
+  const [isInDiet, setIsInDiet] = useState(meal ? meal.is_in_diet : '');
   const [error, setError] = useState('');
-  const {user} = useContext(AuthContext);
 
   const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
   };
+
   const onChangeTime = (event, selectedDate) => {
     const currentDate = selectedDate;
     setTime(currentDate);
@@ -36,7 +41,8 @@ export default function CreateMeal() {
     let hours = time.getUTCHours();
     let minutes = time.getUTCMinutes();
   
-    hours = hours < 10 ? '0' + hours : hours;
+    const modifiedHours = hours - 3;
+    hours = modifiedHours < 10 ? '0' + modifiedHours : modifiedHours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
   
     const timeStr = `${hours}:${minutes}`;
@@ -47,11 +53,10 @@ export default function CreateMeal() {
       date: date.toISOString().slice(0, 10),
       time: timeStr,
       is_in_diet: isInDiet,
-      user_id: user.id,
     }
     
-    const response = await fetch('http://0.0.0.0:8080/diary_new_meal', {
-      method: 'POST',
+    const response = await fetch(`http://0.0.0.0:8080/diary/${id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -60,15 +65,28 @@ export default function CreateMeal() {
   
     const data = await response.json();
   
-    if (data.message === 'Diary added successfully') {
-      setName('')
-      setDescription('')
-      setIsInDiet('')
-      setDate(new Date())
-      setTime(new Date())
+    if (data.message === 'Diary updated successfully') {
+      setMeals(prevState => {
+        return prevState.map(meal => {
+          if (meal.id === id) {
+            return { 
+              id: meal.id,
+              title: name,
+              description: description,
+              date: date.toISOString().slice(0, 10),
+              time: timeStr,
+              is_in_diet: isInDiet,
+              user_id: meal.user_id
+            };
+          } else {
+            return meal;
+          }
+        });
+      })
       setError('')
+      navigation.goBack();
     } else {
-      setError('Erro ao registrar refeição, tente novamente.')
+      setError('Erro ao modificar refeição, tente novamente.')
     }
   }
 
@@ -77,7 +95,7 @@ export default function CreateMeal() {
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name="left" size={20} color="#000" />
       </TouchableOpacity>
-      <Text style={styles.title}>Nova Refeição</Text>
+      <Text style={styles.title}>Editar Refeição</Text>
 
       <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}> Nome</Text>
@@ -126,17 +144,17 @@ export default function CreateMeal() {
       <View style={{ marginTop: 24 }}>
         <Text style={styles.inputLabel}>Está dentro da dieta?</Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={{...styles.inputButton, backgroundColor: isInDiet === 1 ? '#5263E8' : '#D9D0E3' }} onPress={()=>setIsInDiet(1)}>
+          <TouchableOpacity style={{...styles.inputButton, backgroundColor: isInDiet === true ? '#5263E8' : '#D9D0E3' }} onPress={()=>setIsInDiet(1)}>
             <Text style={{ fontWeight: 'bold' }}>Sim</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{...styles.inputButton, backgroundColor: isInDiet === 0 ? '#5263E8' : '#D9D0E3' }} onPress={()=>setIsInDiet(0)}>
+          <TouchableOpacity style={{...styles.inputButton, backgroundColor: isInDiet === false ? '#5263E8' : '#D9D0E3' }} onPress={()=>setIsInDiet(0)}>
             <Text style={{ fontWeight: 'bold' }}>Não</Text>
           </TouchableOpacity>
         </View>
       </View>
 
       <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
-        <Text style={styles.registerButtonText}>Cadastrar refeição</Text>
+        <Text style={styles.registerButtonText}>Editar refeição</Text>
       </TouchableOpacity>
       <Text style={styles.textError}>{error}</Text>
     </ScrollView>
