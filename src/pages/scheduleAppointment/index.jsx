@@ -10,10 +10,10 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
 
 export default function ScheduleAppointment() {
-  const {user} = useContext(AuthContext);
+  const {user} = useContext(UserContext);
   const navigation = useNavigation();
 
   const [name, setName] = useState('');

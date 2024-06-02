@@ -6,6 +6,7 @@ import { UserContext } from "../../context/userContext";
 
 export default function Home(){
   const {user, consecutiveDaysInDiet} = useContext(UserContext);
+  console.log(user)
   const userName = user.name.split(' ')[0];
 
   const navigation = useNavigation();

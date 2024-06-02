@@ -10,7 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
 
 export default function CreateMeal() {
   const navigation = useNavigation();
@@ -21,7 +21,7 @@ export default function CreateMeal() {
   const [time, setTime] = useState(new Date());
   const [isInDiet, setIsInDiet] = useState('');
   const [error, setError] = useState('');
-  const {user} = useContext(AuthContext);
+  const {user} = useContext(UserContext);
 
   const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate;

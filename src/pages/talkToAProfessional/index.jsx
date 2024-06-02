@@ -6,14 +6,13 @@ import {
   View,
   TextInput,
 } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { UserContext } from '../../context/userContext';
 
 export default function TalkToAProfessional() {
-  const {user} = useContext(AuthContext);
+  const {user} = useContext(UserContext);
 
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');

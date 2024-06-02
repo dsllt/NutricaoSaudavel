@@ -11,15 +11,18 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Profile() {
   const {setIsAuthenticated} = useContext(AuthContext);
 
   const navigation = useNavigation();
 
-  function handleLogout() {
+  async function handleLogout() {
+    await AsyncStorage.removeItem('@user_data');
     setIsAuthenticated(false);
   }
+  
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.userContainer}>
