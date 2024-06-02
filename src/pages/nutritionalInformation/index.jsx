@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingTop: 80,
     padding: 28,
+    height: '100%'
   },
   title: {
     fontSize: 30,

@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     padding: 12,
     paddingBottom: 20,
+    height: '100%'
   },
   title: {
     fontSize: 26,

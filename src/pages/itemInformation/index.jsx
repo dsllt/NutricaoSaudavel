@@ -26,6 +26,8 @@ export default function ItemInformation() {
 
 const styles = StyleSheet.create({
   container:{
+    display: 'flex',
+    height: '100%'
   },
   itemImage: {
     width: '100%',
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     borderRadius:30,
     backgroundColor: '#fbf6f3',
+    height: '100%',
   },
   itemInfo: {
     display: 'flex',
